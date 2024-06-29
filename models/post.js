@@ -18,7 +18,7 @@ const postSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    user: {
+    author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
@@ -29,5 +29,7 @@ const postSchema = new mongoose.Schema({
     timestamps: true,
     },
 );
+
+postSchema.index({ author: 1 }, { unique: false });
 
 export default mongoose.model("Post", postSchema);

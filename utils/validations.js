@@ -1,8 +1,8 @@
 import { body } from 'express-validator';
 
 export const loginValidator = [
-  body('email').isEmail().withMessage('Email is required'),
-  body('password').isEmail().withMessage('Password is required'),
+  body('email', 'Invalid Email Format').isEmail(),
+  body('password', 'Password is required').exists(),
 ];
 
 export const registerValidator = [
@@ -13,8 +13,8 @@ export const registerValidator = [
 ];
 
 export const postCreateValidator = [
-    body('title', 'Title is required').isLength({min: 6}).isString(),
-    body('content', 'Content is required').isLength({min: 50}).isString(),
+    body('title', 'Title is required').isLength({min: 3}).isString(),
+    body('content', 'Content is required').isLength({min: 3}).isString(),
     body('tags', 'Not good format for tags').optional().isArray(),
     body('imageUrl', 'Wrong URL for an image').optional().isURL(),
 ];
