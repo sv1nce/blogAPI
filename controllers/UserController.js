@@ -32,10 +32,10 @@ export const register = async (req, res, next) => {
             }
         );
 
-        const { passwordHash, ...userData } = user._doc;
+        delete user._doc.passwordHash;
 
         res.json({
-            ...userData,
+            ...user._doc,
             token,
         });
     }
@@ -71,10 +71,10 @@ export const login = async (req, res, next) => {
             }
         );
 
-        const { passwordHash, ...userData } = user._doc;
+        delete user._doc.passwordHash;
 
         res.json({
-            ...userData,
+            ...user._doc,
             token,
         });
     }
@@ -92,9 +92,9 @@ export const getMe = async (req, res, next) => {
             });
         }
 
-        const { passwordHash, ...userData } = user._doc;
+        delete user._doc.passwordHash;
 
-        res.json(userData);
+        res.json(user._doc);
     }
     catch (err) {
        next(err);

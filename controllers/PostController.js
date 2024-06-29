@@ -55,28 +55,20 @@ export const getOne = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  try{
-    const doc = new PostModel({
+  const doc = new PostModel({
       title: req.body.title,
       content: req.body.content,
       tags: req.body.tags,
       imageUrl: req.body.imageUrl,
       author: req.userId,
     });
-    const post = await doc.save();
-    res.json(post);
-  }
-  catch(err) {
-    res.status(500).json({
-      message: 'Error creating post',
-    });
-  }
+  const post = await doc.save();
+  res.json(post);
 };
 
 export const editPost = async (req, res) => {
   try{
     const postId = req.params.id;
-
     const updatedPost = await PostModel.findByIdAndUpdate(
         postId,
         {
