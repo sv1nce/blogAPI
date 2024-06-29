@@ -56,7 +56,6 @@ export const getOne = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try{
-    console.log( 'Request Body:',req.body);
     const doc = new PostModel({
       title: req.body.title,
       content: req.body.content,
@@ -68,7 +67,6 @@ export const createPost = async (req, res) => {
     res.json(post);
   }
   catch(err) {
-    console.error('Error Creating Post:',err);
     res.status(500).json({
       message: 'Error creating post',
     });
