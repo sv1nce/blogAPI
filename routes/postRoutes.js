@@ -10,5 +10,6 @@ router.get('/', PostController.getAll);
 router.get('/:id', PostController.getOne);
 router.put('/:id', checkAuth, PostController.editPost);
 router.delete('/:id', checkAuth, PostController.deletePost);
+router.post('/:id/like', checkAuth, PostController.likePost);
 
 export default router;

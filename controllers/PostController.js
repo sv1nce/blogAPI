@@ -92,3 +92,20 @@ export const editPost = async (req, res) => {
     });
   }
 };
+
+export const likePost = async (req, res) => {
+  try{
+    const post = await PostModel.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({
+        message: 'Post not found',
+      });
+    }
+    post.likes += 1;
+    await post.save();
+    res.json(post);
+  }
+  catch (err){
+    res.json(err);
+  }
+};

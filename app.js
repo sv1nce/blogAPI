@@ -5,6 +5,7 @@ import cors from 'cors';
 import authRoutes from "./routes/authRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import commentRoutes from "./routes/commentsRoutetes.js";
 
 
 dotenv.config();
@@ -30,6 +31,8 @@ app.use(cors());
 app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
 app.use('/uploads', uploadRoutes);
+
+app.use('/comments', commentRoutes);
 
 
 app.listen(3000, (err) => {
